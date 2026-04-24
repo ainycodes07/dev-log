@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: system_search.exe
+---
+
+<div class="terminal-window">
+  <div class="terminal-header">
+    <div class="terminal-buttons">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+    </div>
+    <div class="terminal-title">system_search.exe</div>
+  </div>
+  
+  <div class="terminal-body">
+    <div class="explore-tags-list" style="margin-bottom: 2rem;">
+      <button class="explore-tag active-tag" data-tag="all">all_files</button>
+      <button class="explore-tag" data-tag="frontend">//frontend</button>
+      <button class="explore-tag" data-tag="performance">//performance</button>
+    </div>
+    
+    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.85rem;">// filtering system logs...</p>
+    
+    <ul class="post-list">
+      {%- for post in collections.post | reverse -%}
+        <li class="post-item filterable-post" data-tags="{{ post.data.tags | join(',') }}">
+          <a href="{{ post.url }}">./{{ post.data.title | slug }}.md</a>
+          <span class="post-date">{{ post.date | date }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>

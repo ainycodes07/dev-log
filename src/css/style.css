@@ -10,7 +10,7 @@
   --text-muted: #c0c0c0; 
   --accent: #27c93f;
   --border: #444444; 
-  --code-font: 'Fira Code', monospace;
+  --code-font: 'IBM Plex Mono', monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; outline-color: var(--accent); }
@@ -23,7 +23,8 @@ body {
   background: var(--bg-main);
   background-attachment: fixed;
   color: var(--text-main);
-  line-height: 1.6;
+  line-height: 2;
+  word-spacing:2px;
   padding: 0 5%; /* Added body margins for easier viewing */
 }
 
@@ -35,20 +36,20 @@ main {flex: 1; max-width: 900px; margin: 0 auto; width:100%; padding: 2rem 0; }
 
 /* Key Hints Bar */
 .key-hints {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
   opacity: 0.8;
 }
 
 .info-icon{
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: var(--terminal-bg);
   font-weight: 700;
   border: 2px solid var(--text-muted);
   background-color: var(--text-muted);
     border-radius: 100%;
-    padding: 2px 6px;
+    padding: 2px 7px;
   margin-bottom: 1.5rem;
   opacity: 0.8;
 }
@@ -68,7 +69,7 @@ nav { display: flex; gap: 1rem; }
 /* --- The Mechanical Key Aesthetic --- */
 .nav-key, .explore-tag, kbd {
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 1rem;
   padding: 6px 14px;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -84,7 +85,24 @@ nav { display: flex; gap: 1rem; }
   position: relative;
   top: 0;
 }
-
+kbd {
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 2px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--terminal-bg);
+  color: var(--text-muted);
+  font-family: var(--code-font);
+  cursor: pointer;
+  
+  /* 3D Key Effect: A thick bottom shadow */
+  box-shadow: 0 4px 0 var(--border);
+  transition: all 0.1s ease; /* Fast like a key switch */
+  display: inline-block;
+  position: relative;
+  top: 0;
+}
 /* Hover State: Just a slight glow/color change */
 .nav-key:hover, .explore-tag:hover {
   border-color: var(--accent);
@@ -110,6 +128,8 @@ nav { display: flex; gap: 1rem; }
 }
 .terminal-window {
   background: var(--terminal-bg);
+  max-width:900px;
+  margin:0 auto;
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
@@ -130,19 +150,20 @@ nav { display: flex; gap: 1rem; }
 
 .terminal-title { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
 
-.terminal-body { padding: 2rem; }
+.terminal-body { padding: 2rem; font-size:1.2rem;}
 
 /* --- Content Styling --- */
 .post-list { list-style: none; }
 .post-item {
   display: flex;
-  justify-content: space-between;
   padding: 1.2rem 0;
   border-bottom: 1px solid var(--border);
 }
-.post-item a { color: var(--text-main); text-decoration: none; }
+.post-item a { display: flex; justify-content: space-between; width:100%; gap: 20px; color: var(--text-main); text-decoration: none; }
 .post-item a:hover { color: var(--accent); text-decoration: underline; }
-
+.post-date{
+  flex-shrink: 0;
+}
 .explore-tag {
   background: none;
   border: 1px solid var(--border);
@@ -222,7 +243,7 @@ footer { padding: 4rem 0; text-align: center; color: var(--text-muted); font-siz
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 650px) {
-  body { padding: 0 1rem; }
+  body { padding: 0 1rem;}
   
   .site-header {
     flex-direction: column;

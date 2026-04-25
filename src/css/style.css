@@ -1,264 +1,223 @@
-
-
-/* Replace these specific sections in your style.css */
+/* Import DM Sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 :root {
-  --bg-main: radial-gradient(circle at center, #2a2a2a 0%, #050505 100%);
-  --terminal-bg: #121212;
-  --text-main: #fafafa;
-  /* Updated for Accessibility Contrast Check */
-  --text-muted: #c0c0c0; 
-  --accent: #27c93f;
-  --border: #444444; 
-  --code-font: 'IBM Plex Mono', monospace;
+    --bg: #ffffff;
+    --text: #000000;
+    --text-muted: #666666;
+    --border: #000000;
+    --hover-bg: #f5f5f5;
+    --container-width: 720px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; outline-color: var(--accent); }
+[data-theme="dark"] {
+    --bg: #000000;
+    --text: #ffffff;
+    --text-muted: #aaaaaa;
+    --border: #ffffff;
+    --hover-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Layout */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 4rem;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 1.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+h1 { font-size: 2.5rem; letter-spacing: -1px; }
+
+p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
+
+/* Post List */
+.post-list {
+    list-style: none;
+}
+
+.post-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.post-item:last-child { border: none; }
+
+.post-link {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.post-link:hover { opacity: 0.7; }
+
+.post-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+
+.post-header{
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  font-family: var(--code-font); /* System-wide mono font */
-  background: var(--bg-main);
-  background-attachment: fixed;
-  color: var(--text-main);
-  line-height: 2;
-  word-spacing:2px;
-  padding: 0 5%; /* Added body margins for easier viewing */
+  align-items: flex-start;
 }
 
-/* --- Layout --- */
-main {flex: 1; max-width: 900px; margin: 0 auto; width:100%; padding: 2rem 0; }
-
-
-
-
-/* Key Hints Bar */
-.key-hints {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-
-.info-icon{
-  font-size: 1rem;
-  color: var(--terminal-bg);
-  font-weight: 700;
-  border: 2px solid var(--text-muted);
-  background-color: var(--text-muted);
-    border-radius: 100%;
-    padding: 2px 7px;
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-
-/* --- Header & Nav --- */
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rem 0; /* Proper spacing from edges */
-  border-bottom: 1px solid var(--border);
-}
-
-.logo a { font-weight: 700; color: var(--accent); text-decoration: none; }
-
-nav { display: flex; gap: 1rem; }
-/* --- The Mechanical Key Aesthetic --- */
-.nav-key, .explore-tag, kbd {
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 6px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--terminal-bg);
-  color: var(--text-muted);
-  font-family: var(--code-font);
-  cursor: pointer;
-  
-  /* 3D Key Effect: A thick bottom shadow */
-  box-shadow: 0 4px 0 var(--border);
-  transition: all 0.1s ease; /* Fast like a key switch */
-  display: inline-block;
-  position: relative;
-  top: 0;
-}
-kbd {
-  text-decoration: none;
-  font-size: 0.8rem;
-  padding: 2px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--terminal-bg);
-  color: var(--text-muted);
-  font-family: var(--code-font);
-  cursor: pointer;
-  
-  /* 3D Key Effect: A thick bottom shadow */
-  box-shadow: 0 4px 0 var(--border);
-  transition: all 0.1s ease; /* Fast like a key switch */
-  display: inline-block;
-  position: relative;
-  top: 0;
-}
-/* Hover State: Just a slight glow/color change */
-.nav-key:hover, .explore-tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Pressed State: This simulates the 'click' */
-.nav-key:active, 
-.nav-key:focus, 
-.active-tag {
-  top: 3px; /* Moves the key down */
-  box-shadow: 0 1px 0 var(--border); /* Flattens the shadow */
-  background: var(--border);
-  color: var(--accent);
-  outline: none;
-}
-
-/* --- Terminal UI --- */
-.terminal-body > * {
-  opacity: 0;
-  animation: typePrint 0.05s forwards;
-  will-change: transform, opacity; /* Tells the browser to optimize these */
-}
-.terminal-window {
-  background: var(--terminal-bg);
-  max-width:900px;
-  margin:0 auto;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.terminal-header {
-  background: var(--border);
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.terminal-buttons { display: flex; gap: 6px; }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
-.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-
-.terminal-title { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
-
-.terminal-body { padding: 2rem; font-size:1.2rem;}
-
-/* --- Content Styling --- */
-.post-list { list-style: none; }
-.post-item {
-  display: flex;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.post-item a { display: flex; justify-content: space-between; width:100%; gap: 20px; color: var(--text-main); text-decoration: none; }
-.post-item a:hover { color: var(--accent); text-decoration: underline; }
-.post-date{
-  flex-shrink: 0;
-}
-.explore-tag {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  padding: 6px 12px;
-  margin-right: 8px;
-  cursor: pointer;
-  font-family: var(--code-font);
-  border-radius: 4px;
-}
-.explore-tag.active-tag { border-color: var(--accent) !important; color: var(--accent); background-color: var(--border); box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
-
-/* Styling for code inside a paragraph */
-p code {
-  font-family: var(--code-font);
-  background: rgba(39, 201, 63, 0.1); /* Subtle green tint */
-  color: #27c93f; /* Vivid terminal green */
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.95em;
-  border: 1px solid rgba(39, 201, 63, 0.2);
-}
-
-/* The container around the code block */
-pre[class*="language-"] {
-  background: #050505 !important; /* Deeper black than terminal */
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent); /* Accent strip on the left */
-  border-radius: 4px;
-  margin: 2rem 0;
-  padding: 1.5rem !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-/* Specific text colors inside the code block */
-pre[class*="language-"] code {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  text-shadow: none; /* Removes the ugly Prism default shadow */
-}
-
-
-footer { padding: 4rem 0; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
-
-/* --- The Typing Animation --- */
-/* We set opacity to 0, then CSS animates them in sequence */
-.terminal-body > * {
-  opacity: 0;
-  animation: typePrint 0.1s forwards;
-}
-
-.terminal-body > *:nth-child(1) { animation-delay: 0.1s; }
-.terminal-body > *:nth-child(2) { animation-delay: 0.25s; }
-.terminal-body > *:nth-child(3) { animation-delay: 0.4s; }
-.terminal-body > *:nth-child(4) { animation-delay: 0.55s; }
-.terminal-body > *:nth-child(5) { animation-delay: 0.7s; }
-.terminal-body > *:nth-child(n+6) { animation-delay: 0.85s; }
-
-@keyframes typePrint {
-  0% { opacity: 0; transform: translateY(5px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Blinking cursor effect on the titles */
-.terminal-title::after {
-  content: ' _';
-  animation: blink 1s step-end infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-
-.filterable-post {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 650px) {
-  body { padding: 0 1rem;}
-  
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2rem 0;
-  }
-
-  nav {
+.post-tags {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.5rem;
-  }
+    gap: 8px;
+    margin-bottom: 1rem;
+}
 
-  .key-hints { display: none; } /* Hide keyboard hints on touch devices */
-  
-  .terminal-header { padding: 10px; }
+.post-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.post-tag:hover {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
+
+/* Minimalist Tag Buttons */
+.explore-tag {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.explore-tag:hover {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
+.explore-tag.active-tag {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
+/* Error Message Styling */
+.system-error {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 2rem 0;
+    border: none !important;
+}
+
+/* Social Icons */
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-item {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    text-align: center;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.social-item:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+/* Dark Mode Toggle */
+#theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Mobile Nav */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    nav {
+        display: flex;
+        gap: 1rem;
+    }
+    nav a { margin: 0; }
 }

@@ -1,35 +1,30 @@
 ---
 layout: base.njk
-title: system_search.exe
+title: Explore
 ---
 
-<div class="terminal-window">
-  <div class="terminal-header">
-    <div class="terminal-buttons">
-      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-    </div>
-    <div class="terminal-title">system_search.exe</div>
-  </div>
-  
-  <div class="terminal-body">
-    <div class="explore-tags-list" style="margin-bottom: 2rem;">
-      <button class="explore-tag active-tag" data-tag="all">all_logs</button>
-      <button class="explore-tag" data-tag="webdev">//webdev</button>
-      <button class="explore-tag" data-tag="11ty">//11ty</button>
-      <button class="explore-tag" data-tag="learning">//learning</button>
-    </div>
+<section>
+    <h1>Explore the Logs</h1>
+    <p style="color: var(--text-muted); margin-bottom: 3rem;">Filter by category or browse the full archive.</p>
     
-    <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.85rem;">// filtering system logs...</p>
+    <h3 style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.5rem;">Tags</h3>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4rem;">
+        <button class="explore-tag active-tag" data-tag="all">All ({{ collections.posts.length }})</button>
     
+    {% for tag in collections.tagList %}
+        <button class="explore-tag" data-tag="{{ tag }}">
+            {{ tag }} ({{ collections[tag].length }})
+        </button>
+    {% endfor %}
+    </div>
+
+    <h3 style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 1.5rem;">Full Archive</h3>
     <ul class="post-list">
-      {%- for post in collections.post | reverse -%}
+      {%- for post in collections.posts | reverse -%}
         <li class="post-item filterable-post" data-tags="{{ post.data.tags | join(',') }}">
-          <a href="{{ post.url }}">
-    <span class="post-title">{{ post.data.title }}</span>
-    <span class="post-date">{{ post.date | date }}</span>
-  </a>
+          <a href="{{ post.url }}" class="post-link">{{ post.data.title }}</a>
+          <span class="post-date">{{ post.date | dateFilter }}</span>
         </li>
       {%- endfor -%}
     </ul>
-  </div>
-</div>
+</section>

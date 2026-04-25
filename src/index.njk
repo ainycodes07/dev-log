@@ -1,26 +1,17 @@
 ---
 layout: base.njk
-title: ~/index.sh
+title: Home
 ---
+<section class="hero">
+    <h1>Log of a quiet engineer.</h1>
+    <p style="color: var(--text-muted)">A minimal space for code, design, and internal documentation.</p>
+</section>
 
-<div class="terminal-window">
-  <div class="terminal-header">
-    <div class="terminal-buttons">
-      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-    </div>
-    <div class="terminal-title">~/index.sh</div>
-  </div>
-  <div class="terminal-body">
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">// Loading local modules...</p>
-    <ul class="post-list">
-      {%- for post in collections.post | reverse -%}
-        <li class="post-item">
-  <a href="{{ post.url }}">
-    <span class="post-title">{{ post.data.title }}</span>
-    <span class="post-date">{{ post.date | date }}</span>
-  </a>
-</li>
-      {%- endfor -%}
-    </ul>
-  </div>
-</div>
+<ul class="post-list">
+  {%- for post in collections.posts | reverse -%}
+    <li class="post-item">
+      <a href="{{ post.url }}" class="post-link">{{ post.data.title }}</a>
+      <span class="post-date">{{ post.date | dateFilter }}</span>
+    </li>
+  {%- endfor -%}
+</ul>

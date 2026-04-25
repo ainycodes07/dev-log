@@ -1,31 +1,19 @@
 ---
 layout: base.njk
 ---
-<div class="terminal-window">
-  <div class="terminal-header">
-    <div class="terminal-buttons">
-      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+<article>
+    <header class="post-header">
+        <!-- post tags go here -->
+        <h1 style="margin-top: 0.5rem;">{{ title }}</h1>
+        <p class="post-date">{{ date | dateFilter }}</p>
+        <div class="post-tags">
+        {% for tag in tags %}
+            <span class="post-tag">{{ tag | upper }}</span>
+        {% endfor %}
     </div>
-    <div class="terminal-title">{{ title | slug }}.md</div>
-  </div>
-  
-  <div class="terminal-body content">
-    <h1 style="margin-bottom: 0.5rem;">{{ title }}</h1>
+    </header>
     
-    <div style="display: flex; flex-wrap: wrgap: 10px; margin-bottom: 2rem; align-items: center;">
-      <span style="color: var(--text-muted); font-size: 0.8rem;">// metadata: </span>
-      {% for tag in tags %}
-        {% if tag != "post" %}
-          <span style="color: var(--text-muted); cursor: default; font-size: 0.8rem;">{{ tag }}</span>
-        {% endif %}
-      {% endfor %}
-      <span style="color: var(--text-muted); font-size: 0.8rem; margin-left: auto;">{{ date | date }}</span>
+    <div class="content">
+        {{ content | safe }}
     </div>
-
-    {{ content | safe }}
-
-    <div style="margin-top: 3rem; border-top: 1px dashed var(--border); padding-top: 1rem; font-size:0.8rem">
-      <a href="/" class="nav-key"><- cd ..</a>
-    </div>
-  </div>
-</div>
+</article>

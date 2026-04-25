@@ -1,12 +1,11 @@
 ---
 layout: post.njk
-title: Log 01 - Why I Built Dev-Log and What made me choose 11ty
-date: 2026-04-25
+title: Log 02 - I'm in love-hate relationship with JS
+date: 2026-04-26
 tags: 
-  - webdev
-  - rm
   - 11ty
   - learning
+  - jk
 ---
 
 

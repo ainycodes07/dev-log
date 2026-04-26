@@ -1,12 +1,9 @@
 ---
 layout: post.njk
-title: Log 01 - Why I Built Dev-Log and What made me choose 11ty
+title: LOG 01 _ Why I Built Dev-Log
 date: 2026-04-25
 tags: 
-  - webdev
-  - rm
-  - 11ty
-  - learning
+  - Dev-Log
 ---
 
 

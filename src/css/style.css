@@ -25,6 +25,10 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full height of the viewport */
+    margin: 0;
     font-family: 'DM Sans', sans-serif;
     background-color: var(--bg);
     color: var(--text);
@@ -37,6 +41,9 @@ body {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 2rem 1.5rem;
+    flex: 1; /* This tells the container to grow and take up all available space */
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -62,12 +69,16 @@ nav a {
     color: var(--text);
     margin-left: 1.5rem;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 nav a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
+}
+
+main{
+  flex:1;
 }
 
 /* Typography */
@@ -79,7 +90,7 @@ h1, h2, h3 {
 
 h1 { font-size: 2.5rem; letter-spacing: -1px; }
 
-p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
+p { margin-bottom: 2rem; color: var(--text); font-size: 1.1rem; }
 
 /* Post List */
 .post-list {
@@ -94,7 +105,6 @@ p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
     align-items: baseline;
 }
 
-.post-item:last-child { border: none; }
 
 .post-link {
     text-decoration: none;
@@ -175,14 +185,15 @@ p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
 
 /* Social Icons */
 .social-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     margin-top: 2rem;
 }
 
 .social-item {
     padding: 0.75rem;
+    min-width: 150px;
     border: 1px solid var(--border);
     text-decoration: none;
     color: var(--text);
@@ -196,15 +207,24 @@ p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
     color: var(--bg);
 }
 
+footer{
+  border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    text-align: left;
+    margin-top: 4rem; /* Adds a bit of 'air' above it */
+}
+
 /* Dark Mode Toggle */
 #theme-toggle {
     background: none;
     border: 1px solid var(--border);
     color: var(--text);
     padding: 0.4rem 0.8rem;
+    margin-left:20px; 
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: bold;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
@@ -220,4 +240,6 @@ p { margin-bottom: 1.5rem; color: var(--text); font-size: 1.1rem; }
         gap: 1rem;
     }
     nav a { margin: 0; }
+
+    #theme-toggle { margin-left: 0; }
 }

@@ -3,9 +3,9 @@ layout: post.njk
 title: LOG 02 _ My 190K Mistake - What a 4-Year CS Degree Didn’t Teach Me
 date: 2026-04-26
 tags: 
-  - Career
-  - Growth
-  - Opinion
+  - career
+  - development
+  - watercooler
 ---
 
 

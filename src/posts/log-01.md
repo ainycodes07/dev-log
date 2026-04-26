@@ -3,7 +3,8 @@ layout: post.njk
 title: LOG 01 _ Why I Built Dev-Log
 date: 2026-04-25
 tags: 
-  - Dev-Log
+  - devlog
+  - learning
 ---
 
 

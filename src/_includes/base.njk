@@ -25,10 +25,12 @@
             {{ content | safe }}
         </main>
 
-        <footer style="margin-top: 8rem; padding-bottom: 4rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <footer style="display: flex; justify-content:space-between; align-items:center; margin-top: 8rem; padding-bottom: 4rem; border-top: 1px solid var(--border); padding-top: 2rem;">
             <p style="font-size: 0.8rem; color: var(--text-muted);">
                 &copy; {{ page.date.getFullYear() }} Qurat Ul Ain. Built with 11ty. 
             </p>
+            <small style="color: #909090; font-family: monospace; font-weight:bold;">Press <kbd style="outline:2px solid #909090; padding:2px 6px; ">H</kbd> for Home; Press <kbd style="outline:2px solid #909090; padding:2px 6px; ">E</kbd> for Explore; Press <kbd style="outline:2px solid #909090; padding:2px 6px; ">A</kbd> for About; </small>
+            
         </footer>
     </div>
 

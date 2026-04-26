@@ -59,13 +59,40 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// 2. KEYBOARD SHORTCUTS ENGINE
+const themeBtn = document.getElementById('theme-toggle');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  if (themeBtn) {
+    themeBtn.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+}
+
+// Initialize on Load
+const savedTheme = localStorage.getItem('theme') || 'light';
+applyTheme(savedTheme);
+
+if (themeBtn) {
+  themeBtn.addEventListener('click', toggleTheme);
+}
+
+// 2. KEYBOARD SHORTCUTS
 document.addEventListener('keydown', (e) => {
-  // Prevent shortcuts if user is typing in an input (if you add search later)
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  // Ignore if typing in inputs
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName) || e.target.isContentEditable) {
+    return;
+  }
 
   const key = e.key.toLowerCase();
-
+  
+  // Navigation Routes
   const routes = {
     'h': '/',
     'e': '/explore/',
@@ -76,26 +103,9 @@ document.addEventListener('keydown', (e) => {
     window.location.href = routes[key];
   }
 
-});
-
-// 3. THEME TOGGLE
-const toggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    toggle.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
-}
-
-toggle.addEventListener('click', () => {
-    let theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        toggle.textContent = 'Dark Mode';
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        toggle.textContent = 'Light Mode';
-    }
+  // Theme Toggle Key
+  if (key === 't') {
+    console.log('Theme toggle triggered via "t"'); // Debug check
+    toggleTheme();
+  }
 });

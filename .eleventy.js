@@ -1,7 +1,8 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
-  module.exports = function(eleventyConfig) {
-
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(syntaxHighlight);
+  
   // 1. AUTOMATIC COLLECTION: Every .md file in the posts folder is now a "post"
   eleventyConfig.addCollection("posts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/posts/*.md");
